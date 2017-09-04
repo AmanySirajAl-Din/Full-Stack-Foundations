@@ -21,6 +21,8 @@ def HelloWorld():
     restaurant = session.query(Restaurant).first()
     # query to grap the 1st restaurant
     # out of my DB
+    # .first() returns the first of a potentially larger result set,
+    # or None if there were no results. No exception will be raised.
     items = session.query(MenuItem).filter_by(restaurant_id=restaurant.id)
     # list out all of the menu items
     output = ''
@@ -28,7 +30,7 @@ def HelloWorld():
         output += i.name
         output += '</br>'  
         # add it to make my output easier to read
-    return output  # return it so that my user sees it from the browser
+    return output  # return it so that my user sees the menu items from the browser
     # and stored in a string called output
 
 if __name__ == '__main__':
