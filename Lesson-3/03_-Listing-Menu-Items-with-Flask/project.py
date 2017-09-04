@@ -22,6 +22,7 @@ def HelloWorld():
         output += i.name
         output += '</br>'
         output += i.price
+        # add the price to my output
         output += '</br>'
         output += i.description
         output += '</br>'
