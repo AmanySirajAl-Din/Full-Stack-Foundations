@@ -1,4 +1,7 @@
+# 1st, import jsonify
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+# jsonify ==> will allow us to easily configure
+# an API endpoint for our app
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Restaurant, MenuItem

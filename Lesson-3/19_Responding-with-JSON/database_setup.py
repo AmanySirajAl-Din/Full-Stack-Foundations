@@ -38,6 +38,9 @@ class MenuItem(Base):
             'price': self.price,
             'course': self.course,
         }
+    # This serializable function
+    # will help define what data we need to send across,
+    # and put it in a format that Flask can easily use.
 
 
 engine = create_engine('sqlite:///restaurantmenu.db')
