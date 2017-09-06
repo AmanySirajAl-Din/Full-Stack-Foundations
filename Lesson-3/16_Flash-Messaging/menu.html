@@ -6,11 +6,17 @@
 
 <!--MESSAGE FLASHING EXAMPLE -->
 {% with messages = get_flashed_messages() %}
+<!-- with ==> it's just a block that does some automatic clean-up,
+        when the block is eited -->
+<!-- get_flashed_messages() ==> To get ahold of all of the flash messages -->
+<!-- get_flashed_messages() ==> return an array of messages -->
 {% if messages %}
 
 <ul>
 {% for message in messages %}
+<!-- loop through the array of messages if it's not empty -->
   <li><strong>{{message}}</strong></li>
+    <!-- and printed out to our HTML doc inside an unordered list -->
   {% endfor %}
 </ul>
 {% endif %}

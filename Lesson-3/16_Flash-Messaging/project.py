@@ -1,3 +1,4 @@
+# 1st, import flash from flask module
 from flask import Flask, render_template, request, redirect, url_for, flash
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -29,6 +30,8 @@ def newMenuItem(restaurant_id):
                            'description'], price=request.form['price'], course=request.form['course'], restaurant_id=restaurant_id)
         session.add(newItem)
         session.commit()
+        # to flash our message
+        # simply use flash fun. like alert in js
         flash("new menu item created!")
         return redirect(url_for('restaurantMenu', restaurant_id=restaurant_id))
     else:
@@ -64,6 +67,9 @@ def deleteMenuItem(restaurant_id, menu_id):
 
 
 if __name__ == '__main__':
+    # 2nd, add a secret_key
     app.secret_key = 'super_secret_key'
+    # which Flask will use to create sessions for our users
+    # it has to be a very secured password
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
