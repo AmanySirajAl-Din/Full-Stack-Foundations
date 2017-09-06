@@ -1,3 +1,9 @@
+# To get data from a form,
+# I'll import request from flask package
+
+# To redirect the user back to the main user page,
+# I'll import redirect from flask package
+
 from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -23,15 +29,29 @@ def restaurantMenu(restaurant_id):
 
 
 @app.route('/restaurant/<int:restaurant_id>/new/', methods=['GET', 'POST'])
+# methods=['GET', 'POST'] to responds to GET & POST requests
+# Now, that I can respond to POST requests,
+# I can make forms for creating & updating MenuItems
 def newMenuItem(restaurant_id):
     if request.method == 'POST':
-        newItem = MenuItem(
-            name=request.form['name'], restaurant_id=restaurant_id)
+    # if statment that looks for POST request
+        newItem = MenuItem(name=request.form['name'],
+            restaurant_id=restaurant_id)
+        # request.form['name'] ==> 
+        # extract the name field from my form
         session.add(newItem)
         session.commit()
+        # After creating my newItem,
+        # Added to my session and 
+        # commit the session to the DB
+        
+        # To redirect the user back to the main user page
+        # use redirect fun.
         return redirect(url_for('restaurantMenu', restaurant_id=restaurant_id))
-    else:
+    else:  # to handle the GET request
+    # if my server didn't receive a POST request,
         return render_template('newmenuitem.html', restaurant_id=restaurant_id)
+        # it'll render the template, for newmenuitem.html
 
 # Task 2: Create route for editMenuItem function here
 
