@@ -1,3 +1,4 @@
+# import render_template function from flask library
 from flask import Flask, render_template
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -18,7 +19,10 @@ session = DBSession()
 def restaurantMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(restaurant_id=restaurant.id)
+    # use render_template for my template menu.html
     return render_template('menu.html', restaurant=restaurant, items=items)
+    # pass my queries into the template,
+    # so that my escape code has access to these var.s
 
 # Task 1: Create route for newMenuItem function here
 
